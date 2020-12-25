@@ -1,4 +1,4 @@
-package myHashMap;
+package letcode;
 
 import java.util.HashMap;
 
