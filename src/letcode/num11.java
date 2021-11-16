@@ -7,8 +7,16 @@ package letcode;
  * 链接：https://leetcode-cn.com/problems/container-with-most-water
  *
  */
-public class Container {
-    public int maxArea(int[] height) {
+public class num11 {
+    public static void main(String[] args) {
+        int[] height = {1,2,3,4,5};
+        int ans = maxArea(height);
+        System.out.println(ans);
+        int a = 15;
+        int b = a%10;
+        System.out.println(b);
+    }
+    public static int maxArea(int[] height) {
         int l = 0, r = height.length - 1;
         int ans = 0;
         while (l < r) {

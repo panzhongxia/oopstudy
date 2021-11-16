@@ -9,8 +9,15 @@ import java.util.List;
  * 注意：答案中不可以包含重复的三元组。
  * https://leetcode-cn.com/problems/3sum/solution/san-shu-zhi-he-by-leetcode-solution/
  */
-class ThreeSum {
-    public List<List<Integer>> threeSum(int[] nums) {
+class num15 {
+    public static void main(String[] args) {
+        int[] nums = {-10,1,2,8,9,10,11};
+        List<List<Integer>> ans = threeSum(nums);
+        for (int i = 0; i < ans.size(); i++) {
+            System.out.println(ans.get(i));
+        }
+    }
+    public static List<List<Integer>> threeSum(int[] nums) {
         int n = nums.length;
         Arrays.sort(nums);
         List<List<Integer>> ans = new ArrayList<List<Integer>>();

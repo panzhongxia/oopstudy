@@ -1,7 +1,5 @@
 package letcode;
 
-import java.util.Arrays;
-
 public class Test {
     public static void main(String[] args){
 //        int[] paixu = {1,2,3,4,0,0,4,6,3};
@@ -10,7 +8,7 @@ public class Test {
 //        int[] out = pp.removeDuplicates(paixu);
 //        System.out.println(Arrays.toString(out));
 
-        Container dd = new Container();
+        num11 dd = new num11();
         int[] paixu = {1,2,3,4,8,9,4,6,7};
         int ans = dd.maxArea(paixu);
         System.out.println(ans);
