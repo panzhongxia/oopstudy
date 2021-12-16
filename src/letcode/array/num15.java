@@ -1,4 +1,4 @@
-package letcode;
+package letcode.array;
 
 import java.util.ArrayList;
 import java.util.Arrays;

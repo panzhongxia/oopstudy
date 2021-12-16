@@ -1,5 +1,7 @@
 package letcode;
 
+import letcode.array.num11;
+
 public class Test {
     public static void main(String[] args){
 //        int[] paixu = {1,2,3,4,0,0,4,6,3};

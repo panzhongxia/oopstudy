@@ -1,4 +1,4 @@
-package letcode;
+package letcode.array;
 
 /**
  * 移动零
