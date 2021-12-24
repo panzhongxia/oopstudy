@@ -1,4 +1,4 @@
-package letcode;
+package letcode.linkedlist;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
