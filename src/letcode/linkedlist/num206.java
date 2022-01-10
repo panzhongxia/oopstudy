@@ -7,14 +7,42 @@ package letcode.linkedlist;
  * https://leetcode-cn.com/problems/reverse-linked-list/
  */
 public class num206 {
+    public static void main(String[] args) {
+        // 构造测试用例，链表指向为 N1 -> N2 -> N3 -> N4
+        Node n4 = new Node(4, null);
+        Node n3 = new Node(3, n4);
+        Node n2 = new Node(2, n3);
+        Node n1 = new Node(1, n2);
+        Node head = n1;
+        // 输出测试用例
+        System.out.println("原始链表指向为：");
+        printNode(head);
+
+        // 普通方式反转链表
+        System.out.println("循环方式反转链表指向为：");
+        head = reverseList1(head);
+        printNode(head);
+    }
+
+    /**
+     * 循环打印链表数据域
+     * @param head
+     */
+    public static void printNode(Node head) {
+        while (head != null) {
+            System.out.println(head.value);
+            head = head.next;
+        }
+    }
 
     //1. 迭代法
     public static class Node {
         public int value;
         public Node next;
 
-        public Node(int data) {
+        public Node(int data, Node nextNode) {
             this.value = data;
+            next = nextNode;
         }
     }
     public static Node reverseList(Node node) {
@@ -29,20 +57,14 @@ public class num206 {
         return pre;
     }
 
+
     /** 2. 递归法
      * 以链表1->2->3->4->5举例
      * @param head
      * @return
      */
-    public class ListNode {
-        int val;
-        ListNode next;
-        ListNode() {}
-        ListNode(int val) { this.val = val; }
-        ListNode(int val, ListNode next) { this.val = val; this.next = next; }
-    }
 
-    public ListNode reverseList(ListNode head) {
+    public static Node reverseList1(Node head) {
         if (head == null || head.next == null) {
             /*
                 直到当前节点的下一个节点为空时返回当前节点
@@ -51,7 +73,7 @@ public class num206 {
             return head;
         }
         //递归传入下一个节点，目的是为了到达最后一个节点
-        ListNode newHead = reverseList(head.next);
+        Node newHead = reverseList(head.next);
                 /*
             第一轮出栈，head为5，head.next为空，返回5
             第二轮出栈，head为4，head.next为5，执行head.next.next=head也就是5.next=4，
