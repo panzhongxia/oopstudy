@@ -20,7 +20,11 @@ public class num206 {
 
         // 普通方式反转链表
         System.out.println("循环方式反转链表指向为：");
-        head = reverseList1(head);
+        //head = reverseList1(head);
+        System.out.println("递归调用前 head 引用指向对象: " + head.toString());
+//        recursionNode(head, null);
+        head = recursionNode2(head, null);
+        System.out.println("递归调用后 head 引用指向对象: " + head.toString());
         printNode(head);
     }
 
@@ -36,6 +40,7 @@ public class num206 {
     }
 
     //1. 迭代法
+    //https://leetcode-cn.com/problems/reverse-linked-list/solution/dong-hua-yan-shi-206-fan-zhuan-lian-biao-by-user74/
     public static class Node {
         public int value;
         public Node next;
@@ -45,14 +50,14 @@ public class num206 {
             next = nextNode;
         }
     }
-    public static Node reverseList(Node node) {
+    public static Node reverseList(Node cur) {
         Node pre = null;
-        Node next = null;
-        while (node != null) {
-            next = node.next;
-            node.next = pre;
-            pre = node;
-            node = next;
+        Node tmp = null;
+        while (cur != null) {
+            tmp = cur.next;
+            cur.next = pre;
+            pre = cur;
+            cur = tmp;
         }
         return pre;
     }
@@ -98,5 +103,50 @@ public class num206 {
         head.next.next = head;
         head.next = null;
         return newHead;
+    }
+
+    /**
+     * 递归实现链表反转
+     * https://www.cnblogs.com/Dreamer-1/p/14609526.html
+     * 递归方法执行完成后，head指向就从原链表顺序：头结点->尾结点 中的第一个结点（头结点） 变成了反转后的链表顺序：尾结点->头结点 中的第一个结点（尾结点）
+     *
+     * @param head 头结点
+     * @param prev 存储上一个结点
+     */
+    public static void recursionNode(Node head, Node prev) {
+        System.out.println("递归调用中 head引用指向对象: " + head.toString());
+        if (null == head.next) {
+            // 设定递归终止条件
+            // 当head.next为空时，表名已经递归到了原链表中的尾结点，此时单独处理尾结点指针域，然后结束递归
+            head.next = prev;
+            System.out.println("递归调用返回前 head引用指向对象: " + head.toString());
+            return;
+        }
+
+        // 1. 先保存当前结点的下一个结点的信息到tempNext
+        Node tempNext = head.next;
+        // 2. 修改当前结点指针域，使其指向上一个结点（如果是第一次进入循环的头结点，则其上一个结点为null）
+        head.next = prev;
+        // 3. 将当前结点信息保存到prev中（以作为下一次递归中第二步使用到的"上一个结点"）
+        prev = head;
+        // 4. 当前结点在之前的123步中指针域修改已经修改完毕，此时让head重新指向待处理的下一个结点
+        head = tempNext;
+
+        // 递归处理下一个结点
+        recursionNode(head, prev);
+    }
+
+    public static Node recursionNode2(Node head, Node prev) {
+        if (null == head.next) {
+            // 设定递归终止条件
+            head.next = prev;
+            return head;
+        }
+        Node tempNext = head.next;
+        head.next = prev;
+        prev = head;
+        head = tempNext;
+        Node result = recursionNode2(head, prev);
+        return result;
     }
 }
