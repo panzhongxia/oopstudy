@@ -10,10 +10,11 @@ public class num26 {
     public static void main(String[] args) {
         int target = 12;
         int[] nums = {1,1,2,2,9,10,11};
-        int result = removeDuplicates1(nums);
+        int result = removeDuplicates(nums);
         for (int i = 0; i < nums.length; i++) {
             System.out.println(nums[i]);
         }
+        System.out.println(result);
     }
 
     public static int removeDuplicates(int[] nums) {
@@ -31,20 +32,47 @@ public class num26 {
         return slow;
     }
 
-    public static int removeDuplicates1(int[] nums) {
+    public int removeDuplicates1 (int[] nums) {
         int n = nums.length;
-        if (n <= 1) return n;
-        return process(nums, 1, nums[n - 1]);
-    }
-    public static int process(int[] nums, int k, int max) {
-        int idx = 0;
-        for (int x : nums) {
-            if (idx < k || nums[idx - k] != x) {
-                nums[idx++] = x;
+        int j = 0;
+        for (int i = 0; i < n; i++) {
+            if (nums[i] != nums[j]) {
+                nums[++j] = nums[i];
             }
-            if (idx - k >= 0 && nums[idx - k] == max) break;
         }
-        return idx;
+        return j + 1;
     }
+    //leetcode.cn/problems/remove-duplicates-from-sorted-array/solutions/575549/shua-chuan-lc-jian-ji-shuang-zhi-zhen-ji-2eg8/
+
+    public int removeDuplicates2 (int[] nums) {
+        if(nums == null || nums.length == 0) return 0;
+        int p = 0;
+        int q = 1;
+        while(q < nums.length){
+            if(nums[p] != nums[q]){
+                nums[p + 1] = nums[q];
+                p++;
+            }
+            q++;
+        }
+        return p + 1;
+    }
+    //leetcode.cn/problems/remove-duplicates-from-sorted-array/solutions/34033/shuang-zhi-zhen-shan-chu-zhong-fu-xiang-dai-you-hu/
+
+//    public static int removeDuplicates1(int[] nums) {
+//        int n = nums.length;
+//        if (n <= 1) return n;
+//        return process(nums, 1, nums[n - 1]);
+//    }
+//    public static int process(int[] nums, int k, int max) {
+//        int idx = 0;
+//        for (int x : nums) {
+//            if (idx < k || nums[idx - k] != x) {
+//                nums[idx++] = x;
+//            }
+//            if (idx - k >= 0 && nums[idx - k] == max) break;
+//        }
+//        return idx;
+//    }
 
 }

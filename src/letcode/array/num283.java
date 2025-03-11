@@ -8,7 +8,7 @@ package letcode.array;
 public class num283 {
     public static void main(String[] args) {
         int[] input = {1,2,4,0,0,5,6};
-        int[] output = moveZeroes(input);
+        int[] output = moveZeroes2(input);
         int length = output.length;
         for (int i = 0; i < length; i++) {
             System.out.println(output[i]);
@@ -23,6 +23,35 @@ public class num283 {
                 nums[i] = temp;
                 j++;
             }
+        }
+        return nums;
+    }
+
+    public static int[] moveZeroes1(int[] nums) {
+        int j = 0;
+        for(int i = 0; i < nums.length; i++) {
+            if(nums[i] != 0) {
+                if(i != j){
+                    nums[j] = nums[i];
+                    nums[i] = 0;
+                }
+                j++;
+            }
+        }
+        return nums;
+    }
+
+    public static int[] moveZeroes2(int[] nums) {
+        int count = 0;
+        for(int i = 0; i < nums.length; i++) {
+            if(nums[i] == 0) {
+                count++;
+            }else{
+                nums[i - count] = nums[i];
+            }
+        }
+        for(int i = nums.length - count; i < nums.length; i++) {
+            nums[i] = 0;
         }
         return nums;
     }

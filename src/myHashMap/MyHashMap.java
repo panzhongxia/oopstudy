@@ -1,6 +1,7 @@
 package myHashMap;
 
-public class MyHashMap<K, V> implements MyMap<K, V>{
+public class
+MyHashMap<K, V> implements MyMap<K, V>{
 
     private Entry<K, V> table[] = null;
     private int size;
